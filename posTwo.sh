@@ -59,7 +59,7 @@ fi
 echo "File name: $GitRepoName"
 
 #-------------------------------------------------------------------- 1
-echo "make .bash_aliases file"
+echo "Add Alias commands"
 sleep 1
 echo "Press Enter to continue..."
 read -s -p ""
@@ -69,37 +69,18 @@ pwd
 ls -a -1 ~/
 echo ""
 echo ""
-cat >.bash_aliases <<EOF
-alias hi="sudo apt update && sudo apt upgrade"
-alias dude="./microInit_i1.sh"
-alias commit="git add . && ./Q_Com.sh && git push -u origin main"
-EOF
-#
-#
-# The following If statement checks for errors------------------------Error Check----IN
-if [ $? -ne 0 ]; then
-    echo "error creating .bash_aliases"
-    exit 1
+# Check for existence of the Alias file if it exists add these commands
+if [ -e ~/.bash_aliases ]; then
+    echo "alias hi='sudo apt update && sudo apt upgrade'" >> ~/.bash_aliases
+    echo "alias dude='./microInit_i1.sh'" >> ~/.bash_aliases
+    echo "alias commit='git add . && ./Q_Com.sh && git push -u origin main'" >> ~/.bash_aliases
 else
-    echo ".bash_aliases created successfully"
-    ls -a -1 ~/
-    echo ""
-    echo ""
+# If the file does not exist, create it and add these commands, later we will make it executable and add it as a current source.
+    touch ~/.bash_aliases
+    echo "alias hi='sudo apt update && sudo apt upgrade'" >> ~/.bash_aliases
+    echo "alias dude='./microInit_i1.sh'" >> ~/.bash_aliases
+    echo "alias commit='git add . && ./Q_Com.sh && git push -u origin main'" >> ~/.bash_aliases
 fi
-# --------------------------------------------------------------------Error Check----OUT
-#
-#
-## Or, just add to the existing file if it exists: (#echo '' >> ~/.bash_aliases)
-#echo 'alias hi="sudo apt update && sudo apt upgrade"' >> ~/.bash_aliases
-#echo 'alias commit="git add . && ./Q_Com.sh && git push -u origin main"' >> ~/.bash_aliases
-#echo 'alias dude="./microInit_i1.sh"' >> ~/.bash_aliases
-#
-
-echo "Creating temporary Aliases until the terminal sets them permanently:"
-alias hi="sudo apt update && sudo apt upgrade"
-alias dude="./microInit_i1.sh"
-alias commit="git add . && ./Q_Com.sh && git push -u origin main"
-sleep 1
 #
 #-------------------------------------------------------------------- 1
 echo "Curl two repository handling scripts into /tmp then cp to home new dir gitHub"
@@ -111,9 +92,9 @@ ls -a -1 /tmp
 mkdir /tmp/exampleRepo
 ls -a -1 /tmp
 ls -a -1 /tmp/exampleRepo
-curl -o /tmp/exampleRepo/Q_Com.sh https://raw.gitHubusercontent.com/LanceTreyark/Templates/main/newRepo_v2/Q_Com.sh
+curl -o /tmp/exampleRepo/Q_Com.sh https://raw.githubusercontent.com/LanceTreyark/ExperimentalUnits/main/Q_Com.sh
 ls -a -1 /tmp/exampleRepo
-curl -o /tmp/exampleRepo/microInit_i1.sh https://raw.gitHubusercontent.com/LanceTreyark/Templates/main/newRepo_v2/microInit_i1.sh
+curl -o /tmp/exampleRepo/microInit_i1.sh https://raw.githubusercontent.com/LanceTreyark/ExperimentalUnits/main/microInit_i1.sh
 ls -a -1 /tmp/exampleRepo
 ls -a -1 ~/
 mkdir ~/$GitRepoName
@@ -158,6 +139,8 @@ echo "-----------------------------------------------------------"
 echo ""
 sleep 1
 sudo chmod +x ~/.bash_aliases
+# source the file to make the commands available in the current shell session
+source ~/.bash_aliases
 echo "Here is a list of the contents after the change"
 ls -a -1 ~/
 echo ""

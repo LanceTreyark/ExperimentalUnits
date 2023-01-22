@@ -8,9 +8,13 @@ comment
 #
 # Start Script:
 echo "Phase One Unit Test has started, "
+sleep 1
+echo "Verify 'curl' is installed"
+sudo apt install curl -y
 #echo "Press Enter to continue..."
 #read -s -p ""
 #
+sleep 1
 echo "mkdir /tmp/gitHub " 
 #Remove this tmp file once phase one is successfully concluded
 mkdir /tmp/gitHub
