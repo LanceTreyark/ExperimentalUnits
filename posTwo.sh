@@ -48,8 +48,8 @@ comment
 #
 read -p "Choose a file name for your first auto repo:  " autoRepo1
 read -p "What is the remote origin for this new repository?   " gitOrigin1
-read -p "What is your Git user email?  " gitEmail #lance@treyark.com
-read -p "What is your Git user name?  " gitName   #LanceTreyark
+read -p "What is your Git user email?  " gitEmail 
+read -p "What is your Git user name?  " gitName   
 read -p "Enter a file name for your Git repository root folder (or press enter for default 'gitRepo'): " GitRepoName
 
 if [ -z "$GitRepoName" ]; then
