@@ -123,10 +123,10 @@ git --version
 #
 echo "End of script."
 ##
-#echo "#ADD_CODE_HERE"
-##ADD_CODE_HERE
+echo "Begin Git configuration script"
+goTwo
 ##
-#echo "Press Enter to continue..."
-#read -s -p ""
+echo "Press Enter to continue..."
+read -s -p ""
 ##
 

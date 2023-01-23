@@ -15,9 +15,7 @@ comment
 
 # Please enter you comit message   1.17.23 653am typo github/gitHub and it already existed make a new filename
 
-<<comment # Multi Line Comment #
-WARNING need to tell people to 
-1) add ssh keys to gitHub for their terminal/server
+<<comment # Multi Line Comment 
 #
 This script is designed to do the following: 
 
@@ -48,8 +46,8 @@ comment
 #
 read -p "Choose a file name for your first auto repo:  " autoRepo1
 read -p "What is the remote origin for this new repository?   " gitOrigin1
-read -p "What is your Git user email?  " gitEmail 
-read -p "What is your Git user name?  " gitName   
+read -p "What is your Git user email?  " gitEmail #lance@treyark.com
+read -p "What is your Git user name?  " gitName   #LanceTreyark
 read -p "Enter a file name for your Git repository root folder (or press enter for default 'gitRepo'): " GitRepoName
 
 if [ -z "$GitRepoName" ]; then
@@ -57,7 +55,16 @@ if [ -z "$GitRepoName" ]; then
 fi
 
 echo "File name: $GitRepoName"
+#---
 
+echo "Update ownership of the .ssh directory & .bash_aliases file"
+sleep 1
+echo "Before ownership change:"
+ls -a -1 ~/
+sudo chown -R 1000:1000 ~/.bash_aliases
+sudo chown -R 1000:1000 ~/.ssh
+echo "After ownership change:"
+ls -a -1 ~/
 #-------------------------------------------------------------------- 1
 echo "Add Alias commands"
 sleep 1
@@ -77,7 +84,7 @@ if [ -e ~/.bash_aliases ]; then
 else
 # If the file does not exist, create it and add these commands, later we will make it executable and add it as a current source.
     touch ~/.bash_aliases
-    echo "alias hi='sudo apt update && sudo apt upgrade'" >> ~/.bash_aliases
+    #echo "alias hi='sudo apt update && sudo apt upgrade'" >> ~/.bash_aliases
     echo "alias dude='./microInit_i1.sh'" >> ~/.bash_aliases
     echo "alias commit='git add . && ./Q_Com.sh && git push -u origin main'" >> ~/.bash_aliases
 fi
@@ -223,6 +230,17 @@ git branch -M main
 git remote add origin $gitOrigin1
 git push -u origin main
 sleep 1
+echo "Removing temp files..."
+sleep 1
+echo "Before change:"
+ls -a -1 /tmp
+sudo rm -r /tmp/gitHub
+sudo rm -r /tmp/exampleRepo
+sleep 1
+echo "After change:"
+ls -a -1
+sleep 1
 echo "The script has concluded"
+sleep 1
 cd ~/
 pwd
