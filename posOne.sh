@@ -16,7 +16,6 @@ sudo apt install curl -y
 #
 sleep 1
 echo "mkdir /tmp/gitHub " 
-#Remove this tmp file once phase one is successfully concluded
 mkdir /tmp/gitHub
 #
 #echo "Press Enter to continue..."
@@ -97,8 +96,8 @@ pwd
 #
 #
 echo "sudo make prefix=/usr/local all" 
-echo "Press Enter to continue..."
-read -s -p ""
+#echo "Press Enter to continue..."
+#read -s -p ""
 sudo make prefix=/usr/local all
 #
 #
@@ -107,10 +106,10 @@ sudo make prefix=/usr/local all
 #
 #
 echo "sudo make prefix=/usr/local install"
-echo "Press Enter to continue..."
-read -s -p ""
+#echo "Press Enter to continue..."
+#read -s -p ""
 sudo make prefix=/usr/local install
-#
+sleep 1
 #
 #echo "Press Enter to continue..."
 #read -s -p ""
@@ -124,9 +123,9 @@ git --version
 echo "End of script."
 ##
 echo "Begin Git configuration script"
-goTwo
+sleep 1
 ##
 echo "Press Enter to continue..."
 read -s -p ""
 ##
-
+goTwo

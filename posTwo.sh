@@ -44,23 +44,41 @@ comment
 #-------------------------------------------------------------------- 0
 #--------------------------PHASE ONE
 #
+<<comment Added to Zero
 read -p "Choose a file name for your first auto repo:  " autoRepo1
 read -p "What is the remote origin for this new repository?   " gitOrigin1
 read -p "What is your Git user email?  " gitEmail #lance@treyark.com
 read -p "What is your Git user name?  " gitName   #LanceTreyark
 read -p "Enter a file name for your Git repository root folder (or press enter for default 'gitRepo'): " GitRepoName
+comment
 
-if [ -z "$GitRepoName" ]; then
-    GitRepoName="gitRepo"
-fi
+#1
+autoRepo1=$(cat /tmp/vArs/varAutoRepo1.txt)
+#2
+gitOrigin1=$(cat /tmp/vArs/varGitOrigin1.txt)
+#3
+gitEmail=$(cat /tmp/vArs/varGitEmail.txt)
+#4
+gitName=$(cat /tmp/vArs/varGitName.txt)
+#5
+GitRepoName=$(cat /tmp/vArs/varGitRepoName.txt)
+#
 
-echo "File name: $GitRepoName"
+#if [ -z "$GitRepoName" ]; then
+ #   GitRepoName="gitRepo"
+#fi
+
+#echo "File name: $GitRepoName"
 #---
-
+echo "Declaring session Git Alias commands"
+alias dude="./microInit_i1.sh"
+alias commit="git add . && ./Q_Com.sh && git push -u origin main"
+sleep 1
 echo "Update ownership of the .ssh directory & .bash_aliases file"
 sleep 1
 echo "Before ownership change:"
 ls -a -1 ~/
+#-----------------------------------------------CHANGE 1000 to a variable based on a test function!!!!!!!!!!!!!!!!!
 sudo chown -R 1000:1000 ~/.bash_aliases
 sudo chown -R 1000:1000 ~/.ssh
 echo "After ownership change:"
@@ -68,8 +86,8 @@ ls -a -1 ~/
 #-------------------------------------------------------------------- 1
 echo "Add Alias commands"
 sleep 1
-echo "Press Enter to continue..."
-read -s -p ""
+#echo "Press Enter to continue..."
+#read -s -p ""
 #-------------------------------------------------------------------- 0
 cd ~/
 pwd
@@ -92,8 +110,8 @@ fi
 #-------------------------------------------------------------------- 1
 echo "Curl two repository handling scripts into /tmp then cp to home new dir gitHub"
 sleep 1
-echo "Press Enter to continue..."
-read -s -p ""
+#echo "Press Enter to continue..."
+#read -s -p ""
 #-------------------------------------------------------------------- 0
 ls -a -1 /tmp
 mkdir /tmp/exampleRepo
@@ -196,19 +214,22 @@ sleep 1
 if [ -f ~/.ssh/id_rsa.pub ]; then
     cat ~/.ssh/id_rsa.pub
     read -p "Have you added this key to your Github settings? (Y/N) " response
-    if [ "$response" = "N" ]; then
+    if [ "$response" = "n" ]; then
         echo "Please add this key to your Github settings."
     fi
 else
     read -p "It appears that an ssh key has not been generated. Would you like to create one? (Y/N) " response
-    if [ "$response" = "Y" ]; then
+    if [ "$response" = "y" ]; then
         ssh-keygen
+        echo ""
         cat ~/.ssh/id_rsa.pub
+        echo ""
         echo "Please add this key to your Github settings."
+        echo ""
     else
         echo "If you dont add the ssh-key the communication with GitHub will fail. are you shure you want to skip this?"
         read -p "Enter (Y/N): " choice
-        if [ "$choice" = "N" ]; then
+        if [ "$choice" = "n" ]; then
             ssh-keygen
             cat ~/.ssh/id_rsa.pub
             echo "Please add this key to your Github settings."
