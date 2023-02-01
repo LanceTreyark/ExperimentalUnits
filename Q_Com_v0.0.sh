@@ -1,5 +1,5 @@
 #!/bin/bash
-# Q_Com.sh 
+# Q_Com_v0.0.sh
 # Add this .sh file to any file containing .git
 # v.012623
 date_time="$(date +"%m.%d.%y %I:%M%p")"
