@@ -1,5 +1,9 @@
 #!/bin/bash
 #v.02023
+# nano chownInit_v0.0.sh
+# sudo chmod +x chownInit_v0.0.sh
+# ./chownInit_v0.0.sh
+# cp /home/repomand/chownInit_v0.0.sh /home/repomand/gitRepo/exampleRepo/
 #3
 gitEmail=$(cat /tmp/vArs/varGitEmail.txt)
 #4
@@ -28,23 +32,11 @@ echo "sudo git config --global user.email $gitEmail"
 echo ""
 echo "* *"
 echo ""
-sudo git commit --amend --reset-author
-echo "sudo git commit --amend --reset-author"
+# sudo git commit --amend --reset-author
+# echo "sudo git commit --amend --reset-author"
 echo ""
 echo "* * *"
 echo ""
 sleep 1
 echo "Script has concluded."
 sleep 1
-<<comment
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name "Your Name"
-    git config --global user.email you@example.com
-
-After doing this, you may fix the identity used for this commit with:
-
-    git commit --amend --reset-author
-comment
